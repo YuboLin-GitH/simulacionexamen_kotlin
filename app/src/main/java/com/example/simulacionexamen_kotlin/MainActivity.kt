@@ -1,6 +1,7 @@
 package com.example.simulacionexamen_kotlin
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,10 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     lateinit var mibinding: ActivityMainBinding
+    lateinit var mireloj: CountDownTimer
+
+    var  minutos =3
+    var segundos =59
     var objpalabras= Juego_de_Palabras()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +31,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         inicializarComponentes()
+        inicializarReloj()
 
+    }
+
+    private fun inicializarReloj() {
+        //Instancio el objeto
+        mireloj = object : CountDownTimer(180000,1000) {
+            override fun onFinish() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                segundos--
+                if (segundos<0){
+                    segundos=59
+                    minutos--
+                }
+
+                mibinding.tiempo.text
+            }
+        }
     }
 
     private fun inicializarComponentes() {
@@ -87,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                             c
                     }
 
+                /*
                 3->
                     palabraCambiada =objpalabras.obtener_Palabra().transformar(false){
                             c, pos->
@@ -96,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                         else
                             c
                     }
-
+                    */
             }
 
 

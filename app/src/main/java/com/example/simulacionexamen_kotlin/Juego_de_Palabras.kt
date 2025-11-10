@@ -12,8 +12,17 @@ class Juego_de_Palabras() {
             field=value
         }
 
+    var palabraOriginal: String = ""
+    var tipoCambio: Int = 0
+
+
     constructor(palabras: ArrayList<String>):this() {
         this.palabras = palabras
+    }
+
+    fun nuevaRonda() {
+        palabraOriginal = palabras.random()
+        tipoCambio = (0..3).random()
     }
 
     fun obtener_Palabra():String {

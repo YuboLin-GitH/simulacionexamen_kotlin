@@ -6,26 +6,21 @@ import kotlin.random.Random
 fun String.transformar(descolocada: Boolean, func_cambiar:(c:Char, a: Int)-> Char): String{
 
     var palabraModificada = ""
-    var palabraFinal=""
+
 
     //Conjunto que guarda las posiciones a cambiar
 
     if (descolocada){
         // Descolocamos la palabra original de forma aleatoria
-        var conjunto=mutableSetOf<Int>()
-        var num_Aleatorio:Int
+        var posiciones =mutableSetOf<Int>()
 
-          while (conjunto.size < this.length){
-
-              num_Aleatorio = Random.nextInt(1,this.length-1)
-              conjunto.add(num_Aleatorio)
-
-          }
+        while (posiciones.size < this.length){
+            posiciones.add(Random.nextInt(0, this.length))
+        }
         // Descolocamos la palabra
         //Recorro las posiciones de la palabras
-        var pos: Int
-        for (pos in 0 .. this.length-1){
-            palabraModificada = palabraModificada+this.get(conjunto.elementAt(pos)).toString()
+        posiciones.forEach { pos ->
+            palabraModificada += this[pos]
         }
     }
     else{
@@ -33,9 +28,11 @@ fun String.transformar(descolocada: Boolean, func_cambiar:(c:Char, a: Int)-> Cha
     }
     //Transformar la palabra, se recorre la palabra y se invoca por
     //cada caracter a la func_cambiar
+    var palabraFinal=""
+
     for (i in 0 .. this.length-1)
     {
-        palabraFinal = palabraFinal+func_cambiar(this.get(i),i).toString()
+        palabraFinal += func_cambiar(palabraModificada[i], i)
     }
 
     // retornar palabrar

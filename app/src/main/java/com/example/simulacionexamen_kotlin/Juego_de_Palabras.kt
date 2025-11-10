@@ -4,7 +4,12 @@ class Juego_de_Palabras() {
 
     private var palabras = mutableListOf<String>("Arrancar","Patata","Juego","Pizarra")
 
-    private  val pista = listOf<String>("Faltan caracteres", "Cambio de vocal", "Posicion del caracter", "Cambia consonante")
+    private  val pista = ArrayList<String>().apply {
+        add("Faltan caracteres")
+        add("Cambio de vocal")
+        add("Posicion del caracter")
+        add("Cambia consonante")
+    }
 
     var puntos = 2
         get()=field
@@ -31,7 +36,7 @@ class Juego_de_Palabras() {
 
 
     fun obtener_Pista(n: Int): String{
-        return pista.get(n)
+        return pista[n]
     }
 
 

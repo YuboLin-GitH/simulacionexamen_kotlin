@@ -3,6 +3,7 @@ package com.example.simulacionexamen_kotlin
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.text.method.KeyListener
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -88,9 +89,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarComponentes() {
+
         //Definimos el listaener para el boton comenzar juego
         mibinding.btJugar.setOnClickListener {
-
             //Habilitamos el editText
             mibinding.etpalabra.isEnabled=true
             mibinding.btComprobar.isEnabled=true
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             //Mostrarmos la palabra transformada
             //Generamos un numero aleatorio entre 0 y 3 para la definir
             //el modo de transformar la palabra
-            var num = Random.nextInt(0, 3)
+            var num = Random.nextInt(0, 4)
 
 
             val nuevaPalabra = objpalabras.obtener_Palabra()
@@ -120,11 +121,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 2 -> palabraCambiada = nuevaPalabra.transformar(false){ c, pos ->
-                    if (pos % 2 == 0) '*' else c  // 例子：偶数位替换为星号字符
+                    if (pos % 2 == 0) (c.lowercaseChar().code - 'a'.code + 1).toString()[0] else c
                 }
                 3 -> palabraCambiada = nuevaPalabra.transformar(false){ c, pos ->
-                    c.uppercaseChar() // 自定义，比如字母全部大写
+                    c.uppercaseChar()
                 }
+                else -> palabraCambiada = nuevaPalabra
             }
             mibinding.tvpalabraModificada.text = palabraCambiada
             mibinding.etpalabra.text.clear() // 清空输入框
@@ -190,6 +192,7 @@ class MainActivity : AppCompatActivity() {
 
         // Reloj
         mibinding.tiempo.text = "3:00"
+        mireloj.cancel()
     }
 
 

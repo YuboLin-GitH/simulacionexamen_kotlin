@@ -79,7 +79,8 @@
             android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="Introduce palabra"
-            android:inputType="text" />
+            android:inputType="text"
+            android:enabled="false"/>
 
     </LinearLayout>
 

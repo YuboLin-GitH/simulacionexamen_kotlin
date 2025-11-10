@@ -38,4 +38,3 @@ fun String.transformar(descolocada: Boolean, func_cambiar:(c:Char, a: Int)-> Cha
     // retornar palabrar
     return palabraFinal
 }
-
